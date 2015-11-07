@@ -207,7 +207,7 @@ void MainWindow::setDirectory(QString musicDirectory)
     while (it.hasNext())
     {
         QFileInfo musicPath(it.next());
-        if(musicPath.isFile() && musicPath.completeSuffix().compare("mp3") == 0)
+        if(musicPath.isFile() && musicPath.suffix().compare("mp3") == 0)
         {
             musicsList.append(musicPath);
         }
@@ -249,8 +249,8 @@ void MainWindow::nextMusic()
     int randomAnswersCount = 0;
 
     rightAnswerPosition = qrand() % 4;
-    rightAnswerName = musicsList[musicIndex].baseName();
-    answerWidgetsList[rightAnswerPosition]->setText(musicsList[musicIndex].baseName());
+    rightAnswerName = musicsList[musicIndex].completeBaseName();
+    answerWidgetsList[rightAnswerPosition]->setText(musicsList[musicIndex].completeBaseName());
     musicsSelected[musicIndex] = true;
 
     for (int i = 0; i < 4; ++i)
@@ -268,7 +268,7 @@ void MainWindow::nextMusic()
             }
             randomAnswersCount++;
             musicsSelected[musicIndex] = true;
-            answerWidgetsList[i]->setText(musicsList[musicIndex].baseName());
+            answerWidgetsList[i]->setText(musicsList[musicIndex].completeBaseName());
         }
     }
 }
